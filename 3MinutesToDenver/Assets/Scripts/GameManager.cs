@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class IntEvent : UnityEvent<int>{
 
@@ -17,58 +18,81 @@ public class DestructableEvent : UnityEvent<Destructable>
 
 }
 
-public class GameManager : MonoBehaviour {
+public class RoundEvent : UnityEvent<RoundResults>{
 
-    public UnityEvent playerFinishedRoundEvent { get; private set; }
+}
+
+public class RoundResults{
+    public float distance;
+    public int pointsEarned;
+}
+
+public class GameManager : MonoBehaviour {
+    static GameManager gameManager;
+
+    public RoundEvent playerFinishedRoundEvent { get; private set; }
     public DestructableEvent destructableDestroyedEvent { get; private set; }
     public IntEvent pointsGainedEvent { get; private set; }
     public FloatEvent panicGainedEvent { get; private set; }
     public UnityEvent comboStartedEvent { get; private set; }
     public UnityEvent comboEndedEvent { get; private set; }
+    public UnityEvent roundStartedEvent { get; private set; }
+    public IntEvent cashGainedEvent { get; private set; }
 
-
-    //Player player;
-    //Airplane airplanePrefab;
+    public MinutesCamera minutesCamera;
+    public PlayerController player;
+    public Airplane airplanePrefab;
     public StartPoint startPoint;
     public EndPoint endPoint;
 
-    //public float comboWindow;
+    public Airplane currentPlane;
 
     public int roundPoints { get; private set; }
     public float panicPoints { get; private set; }
-    //public int comboHits { get; private set; }
 
     public const int MAX_EXPECTED_RECENT_POINTS = 100;
 
     public float panicGainedRecently = 0;
-    //public float recentlyTimeThreshold = 10;
 
     public const float panicDeteriorationPerSecond = 20;
 
     public float comboMultiplier { get; private set; }
 
-    //Coroutine comboRoutine;
-
     public bool roundInProgress = false;
+
+
+
+    public int cash = 0;
+
 
     public void Awake()
     {
-        playerFinishedRoundEvent = new UnityEvent();
+        if(gameManager != null)
+        {
+            Destroy(gameObject);
+            return;
+        }else
+        {
+            gameManager = this;
+        }
+
+        playerFinishedRoundEvent = new RoundEvent();
         destructableDestroyedEvent = new DestructableEvent();
         pointsGainedEvent = new IntEvent();
         panicGainedEvent = new FloatEvent();
         comboStartedEvent = new UnityEvent();
         comboEndedEvent = new UnityEvent();
+        roundStartedEvent = new UnityEvent();
+        cashGainedEvent = new IntEvent();
+
 
     }
 
     public void Start()
     {
         destructableDestroyedEvent.AddListener(ProcessDestruction);
-        //player = FindObjectOfType<Player>();
-        endPoint.playerEnteredZoneEvent.AddListener(ProcessResults);
 
-        StartGame();
+       // StartGame();
     }
 
     public void Update()
@@ -86,9 +110,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void AddCash(int cash)
+    {
+        this.cash += cash;
+        cashGainedEvent.Invoke(cash);
+    }
+
     public void AddPanic(int panic)
     {
-        //panicPoints += panic;
         panicGainedRecently += panic;
         panicGainedEvent.Invoke(panic);
     }
@@ -104,69 +133,74 @@ public class GameManager : MonoBehaviour {
         panicPoints -= panic;
     }
 
+    public void RestartGame()
+    {
+       // SceneManager.LoadScene(1);
+        StartGame();
+    }
+
     public void StartGame()
     {
+        StartCoroutine(StartRoutine());
+
+        
+    }
+
+    //Wrapping in routine so we can wait till load scene finishes which happesn the next frame
+    IEnumerator StartRoutine()
+    {
+        SceneManager.LoadScene(1);
+        yield return null;
+
+        startPoint = FindObjectOfType<StartPoint>();
+        endPoint = FindObjectOfType<EndPoint>();
+
+        endPoint.playerEnteredZoneEvent.AddListener(ProcessResults);
+
+        Debug.Log("Starting");
+
+        //SceneManager.LoadScene(0);
+        if (currentPlane != null)
+        {
+            Destroy(currentPlane.gameObject);
+        }
         //Spawn characters plane at the spawn point
         panicPoints = 0;
         roundPoints = 0;
-        //comboHits = 0;
         panicGainedRecently = 0;
         comboMultiplier = 1f;
         roundInProgress = true;
-        
+
+        currentPlane = Instantiate(airplanePrefab, startPoint.transform.position, startPoint.transform.rotation);
+        player.player = currentPlane.gameObject;
+
+        FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
+
+        roundStartedEvent.Invoke();
     }
 
     public void ProcessResults()
     {
         //Turn players points into cash
+
         roundInProgress = false;
-        playerFinishedRoundEvent.Invoke();
-        Debug.Log("FinishedRound");
+
+        AddCash(roundPoints);
+
+        RoundResults roundResults = new RoundResults();
+        roundResults.pointsEarned = roundPoints;
+        roundResults.distance = currentPlane.transform.position.z - startPoint.transform.position.z;
+        playerFinishedRoundEvent.Invoke(roundResults);
 
     }
 
     void ProcessDestruction(Destructable destructable)
     {
-        // comboHits++;
-        //StartCoroutine(AddRecentlyGainedRoutine(destructable.pointValue));
-        /*
-        if(comboRoutine != null)
-        {
-            //Removing the old combo routine to not clutter everything up, and to prevent it from invoking the combo ended event
-            StopCoroutine(comboRoutine);
-            Debug.Log("Combo reset!");
-        }else
-        {
-            comboStartedEvent.Invoke();
-        }
-        */
-
-        //comboRoutine = StartCoroutine(ComboRoutine());
 
         AddPanic(destructable.pointValue);
         AwardPoints(destructable.pointValue);
         
     }
-
-    /*
-
-    IEnumerator ComboRoutine()
-    {
-        yield return new WaitForSeconds(comboWindow);
-        comboEndedEvent.Invoke();
-        comboRoutine = null;
-        Debug.Log("Combo finished!");
-    }
-    */
-
-        /*
-    IEnumerator AddRecentlyGainedRoutine(int points)
-    {
-        panicGainedRecently += points;
-        yield return new WaitForSeconds(recentlyTimeThreshold);
-        panicGainedRecently -= points;
-    }
-    */
 
 
     public void AwardPoints(int points)
