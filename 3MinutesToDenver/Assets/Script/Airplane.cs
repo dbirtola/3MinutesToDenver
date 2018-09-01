@@ -10,7 +10,7 @@ public class Airplane : MonoBehaviour {
 
     public float turnSpeed = 5;
     public float rotationSpeed = .5f;
-    public float acceleration;
+    //public float acceleration;
     private Vector3 EulerAngleVelocityLeftDirection = new Vector3(0, -100, 0);//needed for rotating left
     private Vector3 EulerAngleVelocityRightDirection = new Vector3(0, 100, 0);//needed for rotating right
     // Use this for initialization
@@ -50,9 +50,11 @@ public class Airplane : MonoBehaviour {
     }
     public void moveForwardAndSteerLeft()
     {
-       // GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().turnSpeed/4);
+        GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().turnSpeed/4);
         Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
         GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
+       // GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x/2, GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z/2);
+        //GetComponent<Rigidbody>().AddForce(transform.forward.x/4, 0, transform.forward.z/4, ForceMode.Acceleration);
     }
     public void moveBackwardAndSteerRight()
     {
