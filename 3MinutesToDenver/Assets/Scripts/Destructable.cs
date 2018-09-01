@@ -28,7 +28,7 @@ public class Destructable : MonoBehaviour {
 
         
 
-        if (coll.gameObject.GetComponent<TestControls>())
+        if (coll.gameObject.GetComponent<Airplane>())
         {
 
             if (destroyOnImpact)

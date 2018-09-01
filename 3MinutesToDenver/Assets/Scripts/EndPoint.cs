@@ -15,7 +15,7 @@ public class EndPoint : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.GetComponent<TestControls>())
+        if (col.gameObject.GetComponent<Airplane>())
         {
             Debug.Log("Triggered");
             playerEnteredZoneEvent.Invoke();

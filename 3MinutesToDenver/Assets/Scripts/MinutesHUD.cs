@@ -13,9 +13,13 @@ public class MinutesHUD : MonoBehaviour {
 
     public FloatingText floatingTextPrefab;
 
+
+    public RoundFinishedPanel roundFinishedPanel;
+
     public void Start()
     {
         gameManager.pointsGainedEvent.AddListener(ShowPoints);
+        gameManager.playerFinishedRoundEvent.AddListener(() => { roundFinishedPanel.Show(); });
     }
 
     public void ShowPoints(int points)

@@ -7,8 +7,8 @@ public class Airplane : MonoBehaviour {
 
     public float speed = 10;
     public float acceleration;
-    private Vector3 EulerAngleVelocityLeftDirection = new Vector3(-100, 0, 0);//needed for rotating left
-    private Vector3 EulerAngleVelocityRightDirection = new Vector3(100, 0, 0);//needed for rotating right
+    private Vector3 EulerAngleVelocityLeftDirection = new Vector3(0, -100, 0);//needed for rotating left
+    private Vector3 EulerAngleVelocityRightDirection = new Vector3(0, 100, 0);//needed for rotating right
     // Use this for initialization
     void Start () {
 		

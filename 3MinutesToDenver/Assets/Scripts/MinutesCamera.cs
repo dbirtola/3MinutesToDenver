@@ -9,6 +9,9 @@ public class MinutesCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = target.transform.position + Vector3.up * distance;
-	}
+        if(target != null)
+        {
+            transform.position = target.transform.position + Vector3.up * distance;
+        }
+    }
 }
