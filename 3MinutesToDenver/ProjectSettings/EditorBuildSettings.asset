@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/ModularScenes/Piece1.unity
+    path: Assets/Scenes/ModularScenes/CityScene.unity
     guid: 97c9cc0f6d629ca4b93d3200a3236a22
   - enabled: 1
     path: Assets/Scenes/ModularScenes/Piece2.unity

@@ -25,7 +25,7 @@ public class MinutesCamera : MonoBehaviour {
 	void Update () {
         if(target != null)
         {
-            transform.position = target.transform.position + Vector3.up * distance;
+            transform.position = target.transform.position + Vector3.up * distance - Vector3.forward * 40;
         }
     }
 }

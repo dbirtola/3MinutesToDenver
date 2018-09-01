@@ -25,7 +25,7 @@ public class SpecialNotification : MonoBehaviour {
         while(plane.GetComponent<AirplaneState>().planeState == PlaneState.Falling)
         {
             Debug.Log("What");
-            specialText.text = "Hangtime Bonus! +" + gameManager.hangtimePoints;
+            specialText.text = "Hangtime Bonus! +" + (int)gameManager.hangtimePoints;
             yield return null;
         }
 

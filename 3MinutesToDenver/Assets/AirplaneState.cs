@@ -9,16 +9,29 @@ public enum PlaneState
     Falling
 }
 
+public enum PlaneSize
+{
+    small,
+    medium,
+    large
+}
+
+public class StateEvent : UnityEvent<PlaneState>{
+
+}
+
 public class AirplaneState : MonoBehaviour {
 
-    public UnityEvent leftGroundEvent;
+    public StateEvent stateChangedEvent;
 
+    public PlaneSize planeSize;
     public PlaneState planeState;
 
+    Coroutine checkFallingRoutine;
 
     void Awake()
     {
-        leftGroundEvent = new UnityEvent();
+        stateChangedEvent = new StateEvent();
     }
 
     void OnCollisionEnter(Collision coll)
@@ -26,26 +39,57 @@ public class AirplaneState : MonoBehaviour {
         if (coll.gameObject.GetComponent<Terrain>())
         {
             EnterState(PlaneState.Grounded);
+
+            if(checkFallingRoutine != null)
+            {
+                StopCoroutine(checkFallingRoutine);
+            }
         }
     }
 
-    void OnTriggerExit(Collider coll)
+    void OnCollisionExit(Collision coll)
     {
-        if(coll.GetComponent<CliffZone>())
+        if(coll.gameObject.GetComponent<Terrain>())
         {
-            EnterState(PlaneState.Falling);
+            if(checkFallingRoutine != null)
+            {
+                StopCoroutine(checkFallingRoutine);
+
+            }
+            checkFallingRoutine = StartCoroutine(CheckFallingRoutine());
         }
         
     }
+
+    //If we are still falling after 0.5 seconds we consider ourselves in the air
+    IEnumerator CheckFallingRoutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        RaycastHit hitInfo = new RaycastHit();
+        Debug.Log("Casting ray!");
+        Physics.Raycast(transform.position + new Vector3(0, 10, 0), Vector3.up * -1,  out hitInfo, 12f);
+        Debug.DrawRay(transform.position + new Vector3(0, 10, 0), Vector3.up * -12, Color.white, 3);
+
+        if (hitInfo.collider == null) {
+
+            EnterState(PlaneState.Falling);
+        }else
+        {
+            if (!hitInfo.collider.GetComponent<Terrain>())
+            {
+                EnterState(PlaneState.Falling);
+            }
+        }
+    }
+
 
     void EnterState(PlaneState planeState)
     {
 
         this.planeState = planeState;
-        if (planeState == PlaneState.Falling)
-        {
-            leftGroundEvent.Invoke();
-        }
+
+
+        stateChangedEvent.Invoke(planeState);
 
     }
 }

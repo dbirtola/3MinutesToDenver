@@ -10,6 +10,8 @@ public class Destructable : MonoBehaviour {
     //If set to false, object will still trigger particles but be left as debris
     public bool destroyOnImpact;
 
+    public PlaneSize requiredSizeToDestroy;
+
     bool hasBeenHit = false;
 
     public GameManager gameManager;
@@ -28,7 +30,7 @@ public class Destructable : MonoBehaviour {
 
         
 
-        if (coll.gameObject.GetComponent<Airplane>())
+        if (coll.gameObject.GetComponent<Airplane>() && coll.gameObject.GetComponent<AirplaneState>().planeSize >= requiredSizeToDestroy)
         {
 
             if (destroyOnImpact)

@@ -46,7 +46,12 @@ public class MinutesHUD : MonoBehaviour {
     public void RoundStart()
     {
         gameObject.SetActive(true);
-        gameManager.currentPlane.GetComponent<AirplaneState>().leftGroundEvent.AddListener(() => { specialNotification.TrackHangtime(); });
+        gameManager.currentPlane.GetComponent<AirplaneState>().stateChangedEvent.AddListener((PlaneState state) => {
+            if (state == PlaneState.Falling)
+            {
+                specialNotification.TrackHangtime();
+            }
+        });
     }
 
     public void UpdateCash(int newCash)

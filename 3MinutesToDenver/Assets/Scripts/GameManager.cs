@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour {
     public int roundPoints { get; private set; }
     public float panicPoints { get; private set; }
 
-    public const int MAX_EXPECTED_RECENT_POINTS = 100;
+    public const int MAX_EXPECTED_RECENT_POINTS = 1000;
 
     public float panicGainedRecently = 0;
 
-    public const float panicDeteriorationPerSecond = 20;
+    public const float panicDeteriorationPerSecond = 75;
 
     public float comboMultiplier { get; private set; }
 
@@ -128,6 +128,10 @@ public class GameManager : MonoBehaviour {
     void CalculateCombo()
     {
         comboMultiplier = (int)(panicGainedRecently * 5 / MAX_EXPECTED_RECENT_POINTS) + 1;
+        if (comboMultiplier > 5)
+        {
+            comboMultiplier = 5;
+        }
     }
 
     public void RemovePanic(float panic)
@@ -179,9 +183,27 @@ public class GameManager : MonoBehaviour {
         FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
 
 
-        currentPlane.GetComponent<AirplaneState>().leftGroundEvent.AddListener(() => { StartCoroutine(HangtimeRoutine()); });
+        currentPlane.GetComponent<AirplaneState>().stateChangedEvent.AddListener((PlaneState state) => {
+        if (state == PlaneState.Falling) {
+                StartCoroutine(HangtimeRoutine());
+                    }
+        });
 
         roundStartedEvent.Invoke();
+
+        StartCoroutine(StartDialogue());
+    }
+
+    IEnumerator StartDialogue()
+    {
+        yield return new WaitForSeconds(1);
+        var dialogueManager = GetComponent<DialogueManager>();
+
+        dialogueManager.QueueDialogue("Air Traffic Control", "Hello flight 247 this is Air Traffic Control", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "We're going to have you ready for flight here in just a couple seconds", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "Honestly, this is my first day. So bare with me here", 2.5f);
+
+
     }
 
     IEnumerator HangtimeRoutine()
@@ -190,7 +212,7 @@ public class GameManager : MonoBehaviour {
         hangtimePoints = 0;
         while(currentPlane.GetComponent<AirplaneState>().planeState == PlaneState.Falling)
         {
-            float points = (int)(POINTS_PER_SECOND_HANGTIME * Time.time);
+            float points = POINTS_PER_SECOND_HANGTIME * Time.deltaTime;
             hangtimePoints += points;
             AddPanic(points);
             yield return null;
@@ -225,7 +247,8 @@ public class GameManager : MonoBehaviour {
 
     public void AwardPoints(int points)
     {
-        roundPoints += (int)(points * comboMultiplier);
-        pointsGainedEvent.Invoke(points);
+        int pointsGained = (int)(points * comboMultiplier);
+        roundPoints += pointsGained;
+        pointsGainedEvent.Invoke(pointsGained);
     }
 }
