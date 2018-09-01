@@ -45,6 +45,14 @@ public class AirplaneState : MonoBehaviour {
                 StopCoroutine(checkFallingRoutine);
             }
         }
+
+        if (coll.gameObject.GetComponent<Destructable>())
+        {
+            if(coll.gameObject.GetComponent<Destructable>().requiredSizeToDestroy > planeSize)
+            {
+                DestroyPlane();
+            }
+        }
     }
 
     void OnCollisionExit(Collision coll)
@@ -59,6 +67,12 @@ public class AirplaneState : MonoBehaviour {
             checkFallingRoutine = StartCoroutine(CheckFallingRoutine());
         }
         
+    }
+
+    public void DestroyPlane()
+    {
+        Debug.Log("Blow up!");
+        Destroy(gameObject);
     }
 
     //If we are still falling after 0.5 seconds we consider ourselves in the air

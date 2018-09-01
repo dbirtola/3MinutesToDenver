@@ -25,7 +25,10 @@ public class MinutesCamera : MonoBehaviour {
 	void Update () {
         if(target != null)
         {
-            transform.position = target.transform.position + Vector3.up * distance - Vector3.forward * 40;
+            transform.position = target.transform.position + Vector3.up * distance - Vector3.forward * 25;
+           // transform.rotation = Quaternion.Euler(23, transform.rotation.y, transform.rotation.z);
         }
     }
+
+    
 }
