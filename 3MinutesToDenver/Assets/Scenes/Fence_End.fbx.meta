@@ -1,14 +1,48 @@
 fileFormatVersion: 2
-guid: fa3d76a021fa4a04eb9205d69b6fdcfe
+guid: 8f0010266ceac2644b3812279bde3512
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pasted__group2
+    100004: pasted__pasted__group
+    100006: pasted__pasted__group1
+    100008: pasted__pasted__pasted__group
+    100010: pasted__pasted__pasted__pasted__pCube3
+    100012: pasted__pasted__pasted__pCube3
+    100014: pasted__pasted__pasted__pCube3 1
+    100016: pasted__pasted__pasted__pCube4
+    100018: pasted__pasted__pasted__transform1
+    100020: pasted__pasted__pasted__transform2
+    100022: pasted__pasted__pCube3
+    100024: pasted__pasted__pCube4
+    100026: pasted__pasted__pCube5
+    100028: pasted__pasted__transform1
+    100030: pasted__pasted__transform2
+    100032: pasted__pasted__transform3
+    100034: pasted__pasted__transform4
     400000: //RootNode
+    400002: pasted__group2
+    400004: pasted__pasted__group
+    400006: pasted__pasted__group1
+    400008: pasted__pasted__pasted__group
+    400010: pasted__pasted__pasted__pasted__pCube3
+    400012: pasted__pasted__pasted__pCube3
+    400014: pasted__pasted__pasted__pCube3 1
+    400016: pasted__pasted__pasted__pCube4
+    400018: pasted__pasted__pasted__transform1
+    400020: pasted__pasted__pasted__transform2
+    400022: pasted__pasted__pCube3
+    400024: pasted__pasted__pCube4
+    400026: pasted__pasted__pCube5
+    400028: pasted__pasted__transform1
+    400030: pasted__pasted__transform2
+    400032: pasted__pasted__transform3
+    400034: pasted__pasted__transform4
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCube1
+    2300000: pasted__pasted__pCube5
+    3300000: pasted__pasted__pCube5
+    4300000: pasted__pasted__pCube5
   externalObjects: {}
   materials:
     importMaterials: 1
