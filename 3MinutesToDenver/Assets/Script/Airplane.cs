@@ -13,6 +13,8 @@ public class Airplane : MonoBehaviour {
     //public float acceleration;
     private Vector3 EulerAngleVelocityLeftDirection = new Vector3(0, -100, 0);//needed for rotating left
     private Vector3 EulerAngleVelocityRightDirection = new Vector3(0, 100, 0);//needed for rotating right
+    private Vector3 EulerAngleVelocityRotateBackward = new Vector3(-100, 0, 0);//needed for rotating right
+
     // Use this for initialization
     void Start () {
 		
@@ -33,9 +35,17 @@ public class Airplane : MonoBehaviour {
         Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRightDirection * Time.deltaTime * rotationSpeed);
         GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
     }
+    /*
     public void moveBackward() {
         // GetComponent<Rigidbody>().velocity = new Vector3(0, 0, transform.forward.z * -GetComponent<Airplane>().speed);
         GetComponent<Rigidbody>().AddForce( -1 * transform.forward * GetComponent<Airplane>().reverseSpeed);
+
+    }
+    */
+    public void rotateBackward()
+    {
+        Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRotateBackward * Time.deltaTime * rotationSpeed);
+        GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
 
     }
     public void moveForward() {
@@ -46,11 +56,12 @@ public class Airplane : MonoBehaviour {
     {
         Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRightDirection * Time.deltaTime * rotationSpeed);
         GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
-        GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().turnSpeed);
+        // GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().turnSpeed);
+        transform.position += transform.forward * Time.deltaTime;
     }
     public void moveForwardAndSteerLeft()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().turnSpeed/4);
+       // GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().turnSpeed/4);
         Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
         GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
        // GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x/2, GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z/2);

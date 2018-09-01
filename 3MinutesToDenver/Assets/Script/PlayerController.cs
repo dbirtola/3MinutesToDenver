@@ -23,12 +23,12 @@ public class PlayerController : MonoBehaviour {
             playerController = this;
         }
     }
-    
+           // if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
+
 	
 	// Update is called once per frame
 	void Update () {
-
-        if ((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
+            if ((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
         {
             player.GetComponent<Airplane>().moveForwardAndSteerRight();
         }
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
         {
             player.GetComponent<Airplane>().moveForwardAndSteerLeft();
         }
-        else if ((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)))
+        else if ( ( (Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)) ) && GetComponent<AirplaneState>().planeState == PlaneState.Falling)
         {
             player.GetComponent<Airplane>().moveBackwardAndSteerRight();
         }
@@ -50,9 +50,16 @@ public class PlayerController : MonoBehaviour {
         {
             player.GetComponent<Airplane>().moveForward();
         }
-        else if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
+        /*
+        else if (Input.GetKey("down") || Input.GetKey(KeyCode.S) && GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
         {
             player.GetComponent<Airplane>().moveBackward();
+        }
+        */
+        // && GetComponent<AirplaneState>().planeState == PlaneState.Falling
+        else if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
+        {
+            player.GetComponent<Airplane>().rotateBackward();
         }
         else if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
         {
