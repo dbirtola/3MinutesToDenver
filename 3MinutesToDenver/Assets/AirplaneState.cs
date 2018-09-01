@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 public enum PlaneState
 {
@@ -11,8 +11,15 @@ public enum PlaneState
 
 public class AirplaneState : MonoBehaviour {
 
+    public UnityEvent leftGroundEvent;
 
     public PlaneState planeState;
+
+
+    void Awake()
+    {
+        leftGroundEvent = new UnityEvent();
+    }
 
     void OnCollisionEnter(Collision coll)
     {
@@ -33,6 +40,12 @@ public class AirplaneState : MonoBehaviour {
 
     void EnterState(PlaneState planeState)
     {
+
         this.planeState = planeState;
+        if (planeState == PlaneState.Falling)
+        {
+            leftGroundEvent.Invoke();
+        }
+
     }
 }

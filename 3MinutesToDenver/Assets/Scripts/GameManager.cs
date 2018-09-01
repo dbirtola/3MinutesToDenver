@@ -60,9 +60,11 @@ public class GameManager : MonoBehaviour {
 
     public bool roundInProgress = false;
 
-
+    public const int POINTS_PER_SECOND_HANGTIME = 50;
 
     public int cash = 0;
+
+    public float hangtimePoints = 0;
 
 
     public void Awake()
@@ -116,7 +118,7 @@ public class GameManager : MonoBehaviour {
         cashGainedEvent.Invoke(cash);
     }
 
-    public void AddPanic(int panic)
+    public void AddPanic(float panic)
     {
         panicGainedRecently += panic;
         panicGainedEvent.Invoke(panic);
@@ -176,7 +178,25 @@ public class GameManager : MonoBehaviour {
 
         FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
 
+
+        currentPlane.GetComponent<AirplaneState>().leftGroundEvent.AddListener(() => { StartCoroutine(HangtimeRoutine()); });
+
         roundStartedEvent.Invoke();
+    }
+
+    IEnumerator HangtimeRoutine()
+    {
+        Debug.Log("started hangtimeRoutine");
+        hangtimePoints = 0;
+        while(currentPlane.GetComponent<AirplaneState>().planeState == PlaneState.Falling)
+        {
+            float points = (int)(POINTS_PER_SECOND_HANGTIME * Time.time);
+            hangtimePoints += points;
+            AddPanic(points);
+            yield return null;
+        }
+
+        AwardPoints((int)hangtimePoints);
     }
 
     public void ProcessResults()

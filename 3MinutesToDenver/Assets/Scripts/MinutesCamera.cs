@@ -6,7 +6,21 @@ public class MinutesCamera : MonoBehaviour {
 
     public GameObject target;
     public int distance;
-	
+
+    static MinutesCamera minutesCamera;
+
+    void Awake()
+    {
+        if(minutesCamera != null)
+        {
+            Destroy(gameObject);
+            return;
+        }else
+        {
+            minutesCamera = this;
+        }
+
+    }
 	// Update is called once per frame
 	void Update () {
         if(target != null)

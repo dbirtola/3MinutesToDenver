@@ -14,6 +14,7 @@ public class MinutesHUD : MonoBehaviour {
 
     public FloatingText floatingTextPrefab;
 
+    public SpecialNotification specialNotification;
 
     public RoundFinishedPanel roundFinishedPanel;
 
@@ -34,12 +35,18 @@ public class MinutesHUD : MonoBehaviour {
 
     public void Start()
     {
-        gameManager.roundStartedEvent.AddListener(() => { gameObject.SetActive(true); });
+        gameManager.roundStartedEvent.AddListener(() => { RoundStart(); });
         gameManager.pointsGainedEvent.AddListener(ShowPoints);
         gameManager.playerFinishedRoundEvent.AddListener(roundFinishedPanel.Show);
         gameManager.cashGainedEvent.AddListener(UpdateCash);
-
+  
         gameObject.SetActive(false);
+    }
+
+    public void RoundStart()
+    {
+        gameObject.SetActive(true);
+        gameManager.currentPlane.GetComponent<AirplaneState>().leftGroundEvent.AddListener(() => { specialNotification.TrackHangtime(); });
     }
 
     public void UpdateCash(int newCash)
