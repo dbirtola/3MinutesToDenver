@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ModularScenes/CityScene.unity
     guid: 97c9cc0f6d629ca4b93d3200a3236a22
   - enabled: 1
-    path: Assets/Scenes/ModularScenes/Piece2.unity
+    path: Assets/Scenes/ModularScenes/FarmScene.unity
     guid: 9542192795c9dca4393dc03fb1c65dae
   - enabled: 1
     path: Assets/Scenes/ModularScenes/Piece3.unity
