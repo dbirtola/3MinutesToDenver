@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class IntEvent : UnityEvent<int>{
 
@@ -17,14 +18,26 @@ public class DestructableEvent : UnityEvent<Destructable>
 
 }
 
-public class GameManager : MonoBehaviour {
+public class RoundEvent : UnityEvent<RoundResults>{
 
-    public UnityEvent playerFinishedRoundEvent { get; private set; }
+}
+
+public class RoundResults{
+    public float distance;
+    public int pointsEarned;
+}
+
+public class GameManager : MonoBehaviour {
+    static GameManager gameManager;
+
+    public RoundEvent playerFinishedRoundEvent { get; private set; }
     public DestructableEvent destructableDestroyedEvent { get; private set; }
     public IntEvent pointsGainedEvent { get; private set; }
     public FloatEvent panicGainedEvent { get; private set; }
     public UnityEvent comboStartedEvent { get; private set; }
     public UnityEvent comboEndedEvent { get; private set; }
+    public UnityEvent roundStartedEvent { get; private set; }
+    public IntEvent cashGainedEvent { get; private set; }
 
     public MinutesCamera minutesCamera;
     public PlayerController player;
@@ -47,23 +60,39 @@ public class GameManager : MonoBehaviour {
 
     public bool roundInProgress = false;
 
+
+
+    public int cash = 0;
+
+
     public void Awake()
     {
-        playerFinishedRoundEvent = new UnityEvent();
+        if(gameManager != null)
+        {
+            Destroy(gameObject);
+            return;
+        }else
+        {
+            gameManager = this;
+        }
+
+        playerFinishedRoundEvent = new RoundEvent();
         destructableDestroyedEvent = new DestructableEvent();
         pointsGainedEvent = new IntEvent();
         panicGainedEvent = new FloatEvent();
         comboStartedEvent = new UnityEvent();
         comboEndedEvent = new UnityEvent();
+        roundStartedEvent = new UnityEvent();
+        cashGainedEvent = new IntEvent();
+
 
     }
 
     public void Start()
     {
         destructableDestroyedEvent.AddListener(ProcessDestruction);
-        endPoint.playerEnteredZoneEvent.AddListener(ProcessResults);
 
-        StartGame();
+       // StartGame();
     }
 
     public void Update()
@@ -79,6 +108,12 @@ public class GameManager : MonoBehaviour {
             
             CalculateCombo();
         }
+    }
+
+    public void AddCash(int cash)
+    {
+        this.cash += cash;
+        cashGainedEvent.Invoke(cash);
     }
 
     public void AddPanic(int panic)
@@ -98,9 +133,34 @@ public class GameManager : MonoBehaviour {
         panicPoints -= panic;
     }
 
+    public void RestartGame()
+    {
+       // SceneManager.LoadScene(1);
+        StartGame();
+    }
+
     public void StartGame()
     {
-        if(currentPlane != null)
+        StartCoroutine(StartRoutine());
+
+        
+    }
+
+    //Wrapping in routine so we can wait till load scene finishes which happesn the next frame
+    IEnumerator StartRoutine()
+    {
+        SceneManager.LoadScene(1);
+        yield return null;
+
+        startPoint = FindObjectOfType<StartPoint>();
+        endPoint = FindObjectOfType<EndPoint>();
+
+        endPoint.playerEnteredZoneEvent.AddListener(ProcessResults);
+
+        Debug.Log("Starting");
+
+        //SceneManager.LoadScene(0);
+        if (currentPlane != null)
         {
             Destroy(currentPlane.gameObject);
         }
@@ -111,18 +171,26 @@ public class GameManager : MonoBehaviour {
         comboMultiplier = 1f;
         roundInProgress = true;
 
-        currentPlane  = Instantiate(airplanePrefab, startPoint.transform.position, startPoint.transform.rotation);
+        currentPlane = Instantiate(airplanePrefab, startPoint.transform.position, startPoint.transform.rotation);
         player.player = currentPlane.gameObject;
-        minutesCamera.target = currentPlane.gameObject;
-        
+
+        FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
+
+        roundStartedEvent.Invoke();
     }
 
     public void ProcessResults()
     {
         //Turn players points into cash
+
         roundInProgress = false;
-        playerFinishedRoundEvent.Invoke();
-        Debug.Log("FinishedRound");
+
+        AddCash(roundPoints);
+
+        RoundResults roundResults = new RoundResults();
+        roundResults.pointsEarned = roundPoints;
+        roundResults.distance = currentPlane.transform.position.z - startPoint.transform.position.z;
+        playerFinishedRoundEvent.Invoke(roundResults);
 
     }
 

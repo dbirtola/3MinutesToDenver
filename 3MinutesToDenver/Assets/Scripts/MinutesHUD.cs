@@ -7,6 +7,7 @@ public class MinutesHUD : MonoBehaviour {
 
     public Text pointText;
     public Text comboText;
+    public Text cashText;
     public Slider panicSlider;
 
     public GameManager gameManager;
@@ -16,10 +17,34 @@ public class MinutesHUD : MonoBehaviour {
 
     public RoundFinishedPanel roundFinishedPanel;
 
+    static MinutesHUD minutesHUD;
+
+    public void Awake()
+    {
+        if(minutesHUD != null)
+        {
+            Destroy(gameObject);
+            return;
+        }else
+        {
+            minutesHUD = this;
+        }
+
+    }
+
     public void Start()
     {
+        gameManager.roundStartedEvent.AddListener(() => { gameObject.SetActive(true); });
         gameManager.pointsGainedEvent.AddListener(ShowPoints);
-        gameManager.playerFinishedRoundEvent.AddListener(() => { roundFinishedPanel.Show(); });
+        gameManager.playerFinishedRoundEvent.AddListener(roundFinishedPanel.Show);
+        gameManager.cashGainedEvent.AddListener(UpdateCash);
+
+        gameObject.SetActive(false);
+    }
+
+    public void UpdateCash(int newCash)
+    {
+        cashText.text = "Cash MoFuckin Money: $$" + gameManager.cash;
     }
 
     public void ShowPoints(int points)

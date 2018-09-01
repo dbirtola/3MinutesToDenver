@@ -17,7 +17,6 @@ public class EndPoint : MonoBehaviour {
     {
         if (col.gameObject.GetComponent<Airplane>())
         {
-            Debug.Log("Triggered");
             playerEnteredZoneEvent.Invoke();
         }
     }

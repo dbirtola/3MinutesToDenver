@@ -11,7 +11,6 @@ public class FloatingText : MonoBehaviour {
 
     public void Float(string text, Vector3 position)
     {
-        Debug.Log("Started floating");
         GetComponent<Text>().text = text;
         transform.position = position;
         StartCoroutine(floatUp());

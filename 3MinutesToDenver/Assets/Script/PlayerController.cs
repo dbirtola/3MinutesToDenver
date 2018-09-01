@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    static PlayerController playerController;
 
     //player controller has input testing
     public GameObject player;
@@ -10,9 +11,19 @@ public class PlayerController : MonoBehaviour {
     private Vector3 EulerAngleVelocityLeftDirection = new Vector3(-100,0,0);
     private Vector3 EulerAngleVelocityRightDirection = new Vector3(100, 0, 0);
 
-    void Start () {
-		
-	}
+
+    void Awake()
+    {
+        if(playerController != null)
+        {
+            Destroy(gameObject);
+            return;
+        }else
+        {
+            playerController = this;
+        }
+    }
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -53,4 +64,6 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
+
 }
