@@ -6,9 +6,9 @@ public class Airplane : MonoBehaviour {
 
 
     public float speed = 15;
-    public float reverseSpeed = 12;
+   // public float reverseSpeed = 12;
 
-    public float turnSpeed = 5;
+   // public float turnSpeed = 5;
     public float rotationSpeed = .5f;
     //public float acceleration;
     private Vector3 EulerAngleVelocityLeftDirection = new Vector3(0, -100, 0);//needed for rotating left
@@ -67,6 +67,7 @@ public class Airplane : MonoBehaviour {
        // GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x/2, GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z/2);
         //GetComponent<Rigidbody>().AddForce(transform.forward.x/4, 0, transform.forward.z/4, ForceMode.Acceleration);
     }
+    /*
     public void moveBackwardAndSteerRight()
     {
        // GetComponent<Rigidbody>().AddForce(-1 * transform.forward * GetComponent<Airplane>().turnSpeed/4);
@@ -79,4 +80,5 @@ public class Airplane : MonoBehaviour {
         Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
         GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
     }
+    */
 }

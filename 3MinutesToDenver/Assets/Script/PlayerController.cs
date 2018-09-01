@@ -36,13 +36,13 @@ public class PlayerController : MonoBehaviour {
         {
             player.GetComponent<Airplane>().moveForwardAndSteerLeft();
         }
-        else if ( ( (Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)) ) && GetComponent<AirplaneState>().planeState == PlaneState.Falling)
+        else if ( ( (Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)) ))
         {
-            player.GetComponent<Airplane>().moveBackwardAndSteerRight();
+            player.GetComponent<Airplane>().rotateBackward();
         }
         else if ((Input.GetKey("left") || Input.GetKey(KeyCode.A)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)))
         {
-            player.GetComponent<Airplane>().moveBackwardAndSteerLeft();
+            player.GetComponent<Airplane>().rotateBackward();
         }
 
 
