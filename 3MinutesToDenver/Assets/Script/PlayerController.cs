@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour {
     //player controller has input testing
     public GameObject player;
     // Use this for initialization
-    private Vector3 EulerAngleVelocityLeftDirection = new Vector3(-100,0,0);
-    private Vector3 EulerAngleVelocityRightDirection = new Vector3(100, 0, 0);
+    //private Vector3 EulerAngleVelocityLeftDirection = new Vector3(-100,0,0);
+   // private Vector3 EulerAngleVelocityRightDirection = new Vector3(100, 0, 0);
 
 
     void Awake()
@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            if ((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
+
+        if ((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
         {
             player.GetComponent<Airplane>().moveForwardAndSteerRight();
         }
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour {
         {
             player.GetComponent<Airplane>().moveForwardAndSteerLeft();
         }
-        else if ( ( (Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)) ))
+        else if (((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S))))
         {
             player.GetComponent<Airplane>().rotateBackward();
         }
@@ -44,19 +45,13 @@ public class PlayerController : MonoBehaviour {
         {
             player.GetComponent<Airplane>().rotateBackward();
         }
+        else
+            player.GetComponent<Rigidbody>().drag = 0;
 
-
-        if (Input.GetKey("up") || Input.GetKey(KeyCode.W))
+        if ( (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
         {
             player.GetComponent<Airplane>().moveForward();
         }
-        /*
-        else if (Input.GetKey("down") || Input.GetKey(KeyCode.S) && GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
-        {
-            player.GetComponent<Airplane>().moveBackward();
-        }
-        */
-        // && GetComponent<AirplaneState>().planeState == PlaneState.Falling
         else if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
         {
             player.GetComponent<Airplane>().rotateBackward();
@@ -69,6 +64,7 @@ public class PlayerController : MonoBehaviour {
         {
             player.GetComponent<Airplane>().steerRight();
         }
+
 
     }
 

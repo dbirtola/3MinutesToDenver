@@ -21,8 +21,8 @@ public class SpecialNotification : MonoBehaviour {
 
     IEnumerator HangtimeRoutine()
     {
-
-        while(plane.GetComponent<AirplaneState>().planeState == PlaneState.Falling)
+        
+        while(plane != null && plane.GetComponent<AirplaneState>().planeState == PlaneState.Falling)
         {
             specialText.text = "Hangtime Bonus! +" + (int)gameManager.hangtimePoints;
             yield return null;

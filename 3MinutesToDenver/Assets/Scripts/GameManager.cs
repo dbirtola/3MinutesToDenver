@@ -41,10 +41,11 @@ public class GameManager : MonoBehaviour {
 
     public MinutesCamera minutesCamera;
     public PlayerController player;
-    public Airplane airplanePrefab;
+    public Airplane[] airplanePrefabs;
     public StartPoint startPoint;
     public EndPoint endPoint;
 
+    public PlaneSize currentPlaneSize;
     public Airplane currentPlane;
 
     public int roundPoints { get; private set; }
@@ -60,12 +61,15 @@ public class GameManager : MonoBehaviour {
 
     public bool roundInProgress = false;
 
-    public const int POINTS_PER_SECOND_HANGTIME = 50;
+    public const int POINTS_PER_SECOND_HANGTIME = 150;
 
     public int cash = 0;
 
     public float hangtimePoints = 0;
 
+
+    public int[] upgradeCosts;
+    
 
     public void Awake()
     {
@@ -99,6 +103,7 @@ public class GameManager : MonoBehaviour {
 
     public void Update()
     {
+        
         if (roundInProgress)
         {
             panicGainedRecently -= panicDeteriorationPerSecond * Time.deltaTime;
@@ -110,6 +115,11 @@ public class GameManager : MonoBehaviour {
             
             CalculateCombo();
         }
+    }
+
+    public int GetUpgradeCost()
+    {
+        return upgradeCosts[(int)currentPlaneSize];
     }
 
     public void AddCash(int cash)
@@ -131,6 +141,15 @@ public class GameManager : MonoBehaviour {
         if (comboMultiplier > 5)
         {
             comboMultiplier = 5;
+        }
+    }
+
+    public void UpgradePlane()
+    {
+        if(cash > GetUpgradeCost())
+        {
+            cash -= GetUpgradeCost();
+            currentPlaneSize++;
         }
     }
 
@@ -177,7 +196,7 @@ public class GameManager : MonoBehaviour {
         comboMultiplier = 1f;
         roundInProgress = true;
 
-        currentPlane = Instantiate(airplanePrefab, startPoint.transform.position, startPoint.transform.rotation);
+        currentPlane = Instantiate(airplanePrefabs[(int)currentPlaneSize], startPoint.transform.position, startPoint.transform.rotation);
         player.player = currentPlane.gameObject;
 
         FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
