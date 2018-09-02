@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour {
     {
         // SceneManager.LoadScene(1);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(6);
 
         startPoint = FindObjectOfType<StartPoint>();
         endPoint = FindObjectOfType<EndPoint>();
@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator VeryStartRoutine()
     {
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(6);
         yield return null;
 
         startPoint = FindObjectOfType<StartPoint>();
