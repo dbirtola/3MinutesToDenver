@@ -8,6 +8,7 @@ public class MinutesHUD : MonoBehaviour {
     public Text pointText;
     public Text comboText;
     public Text cashText;
+    public Text timerText;
     public Slider panicSlider;
 
     public GameManager gameManager;
@@ -19,6 +20,8 @@ public class MinutesHUD : MonoBehaviour {
     public RoundFinishedPanel roundFinishedPanel;
 
     static MinutesHUD minutesHUD;
+
+    Coroutine timerRoutine;
 
     public void Awake()
     {
@@ -46,12 +49,27 @@ public class MinutesHUD : MonoBehaviour {
     public void RoundStart()
     {
         gameObject.SetActive(true);
+
+
         gameManager.currentPlane.GetComponent<AirplaneState>().stateChangedEvent.AddListener((PlaneState state) => {
             if (state == PlaneState.Falling)
             {
                 specialNotification.TrackHangtime();
             }
         });
+
+        StartCoroutine(TimerRoutine());
+    }
+
+    public IEnumerator TimerRoutine()
+    {
+        var gm = FindObjectOfType<GameManager>();
+        while (true)
+        {
+            float timeRemaining =  gm.timeStarted + 180 - Time.time;
+            timerText.text = "Time Expected: " + (int)timeRemaining / 60 + ":" + (int)timeRemaining % 60;
+            yield return null;
+        }
     }
 
     public void UpdateCash(int newCash)

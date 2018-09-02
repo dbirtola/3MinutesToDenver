@@ -28,48 +28,52 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (player != null)
+        {
 
-        if ((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
-        {
-            player.GetComponent<Airplane>().moveForwardAndSteerRight();
-        }
-        else if ((Input.GetKey("left") || Input.GetKey(KeyCode.A)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
-        {
-            player.GetComponent<Airplane>().moveForwardAndSteerLeft();
-        }
-        else if (((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S))))
-        {
-            player.GetComponent<Airplane>().rotateBackward();
-        }
-        else if ((Input.GetKey("left") || Input.GetKey(KeyCode.A)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)))
-        {
-            player.GetComponent<Airplane>().rotateBackward();
-        }
-        else if ((Input.GetKey("up") || Input.GetKey(KeyCode.W) && (Input.GetKey("down") || Input.GetKey(KeyCode.S))))
-        {
-            player.GetComponent<Airplane>().rotateBackward();
+
+            if ((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
+            {
+                player.GetComponent<Airplane>().moveForwardAndSteerRight();
+            }
+            else if ((Input.GetKey("left") || Input.GetKey(KeyCode.A)) && (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
+            {
+                player.GetComponent<Airplane>().moveForwardAndSteerLeft();
+            }
+            else if (((Input.GetKey("right") || Input.GetKey(KeyCode.D)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S))))
+            {
+                player.GetComponent<Airplane>().rotateBackward();
+            }
+            else if ((Input.GetKey("left") || Input.GetKey(KeyCode.A)) && (Input.GetKey("down") || Input.GetKey(KeyCode.S)))
+            {
+                player.GetComponent<Airplane>().rotateBackward();
+            }
+            else if ((Input.GetKey("up") || Input.GetKey(KeyCode.W) && (Input.GetKey("down") || Input.GetKey(KeyCode.S))))
+            {
+                player.GetComponent<Airplane>().rotateBackward();
+
+            }
+            else
+                player.GetComponent<Rigidbody>().drag = 0;
+
+            if ((Input.GetKey("up") || Input.GetKey(KeyCode.W)))
+            {
+                player.GetComponent<Airplane>().moveForward();
+            }
+            else if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
+            {
+                player.GetComponent<Airplane>().rotateBackward();
+            }
+            else if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
+            {
+                player.GetComponent<Airplane>().steerLeft();
+            }
+            else if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
+            {
+                player.GetComponent<Airplane>().steerRight();
+            }
 
         }
-        else
-            player.GetComponent<Rigidbody>().drag = 0;
-
-        if ( (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
-        {
-            player.GetComponent<Airplane>().moveForward();
-        }
-        else if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
-        {
-            player.GetComponent<Airplane>().rotateBackward();
-        }
-        else if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
-        {
-            player.GetComponent<Airplane>().steerLeft();
-        }
-        else if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
-        {
-            player.GetComponent<Airplane>().steerRight();
-        }
-
 
     }
 

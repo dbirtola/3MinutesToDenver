@@ -69,7 +69,9 @@ public class GameManager : MonoBehaviour {
 
 
     public int[] upgradeCosts;
-    
+
+
+    public float timeStarted;
 
     public void Awake()
     {
@@ -98,7 +100,9 @@ public class GameManager : MonoBehaviour {
     {
         destructableDestroyedEvent.AddListener(ProcessDestruction);
 
-       // StartGame();
+        // StartGame();
+
+        StartCoroutine(VeryStartRoutine());
     }
 
     public void Update()
@@ -160,8 +164,19 @@ public class GameManager : MonoBehaviour {
 
     public void RestartGame()
     {
-       // SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+
+        SceneManager.LoadScene(1);
+
+        startPoint = FindObjectOfType<StartPoint>();
+        endPoint = FindObjectOfType<EndPoint>();
+
+        currentPlane = Instantiate(airplanePrefabs[(int)currentPlaneSize], startPoint.transform.position, startPoint.transform.rotation);
+        player.player = currentPlane.gameObject;
+
+
         StartGame();
+
     }
 
     public void StartGame()
@@ -171,10 +186,31 @@ public class GameManager : MonoBehaviour {
         
     }
 
+    IEnumerator VeryStartRoutine()
+    {
+
+        SceneManager.LoadScene(1);
+        yield return null;
+
+        startPoint = FindObjectOfType<StartPoint>();
+        endPoint = FindObjectOfType<EndPoint>();
+
+        currentPlane = Instantiate(airplanePrefabs[(int)currentPlaneSize], startPoint.transform.position, startPoint.transform.rotation);
+        player.player = currentPlane.gameObject;
+
+
+
+        FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
+        FindObjectOfType<MinutesCamera>().StartIntroPan();
+
+    }
+
+
     //Wrapping in routine so we can wait till load scene finishes which happesn the next frame
     IEnumerator StartRoutine()
     {
-        SceneManager.LoadScene(1);
+
+        FindObjectOfType<MinutesCamera>().StopIntroPan();
         yield return null;
 
         startPoint = FindObjectOfType<StartPoint>();
@@ -182,7 +218,6 @@ public class GameManager : MonoBehaviour {
 
         endPoint.playerEnteredZoneEvent.AddListener(ProcessResults);
 
-        Debug.Log("Starting");
 
         //SceneManager.LoadScene(0);
         if (currentPlane != null)
@@ -203,14 +238,17 @@ public class GameManager : MonoBehaviour {
 
 
         currentPlane.GetComponent<AirplaneState>().stateChangedEvent.AddListener((PlaneState state) => {
-        if (state == PlaneState.Falling) {
+            if (state == PlaneState.Falling) {
                 StartCoroutine(HangtimeRoutine());
-                    }
+            }
         });
 
+        currentPlane.GetComponent<AirplaneState>().planeDestroyedEvent.AddListener(ProcessResults);
         roundStartedEvent.Invoke();
 
         StartCoroutine(StartDialogue());
+
+        timeStarted = Time.time;
     }
 
     IEnumerator StartDialogue()
@@ -229,7 +267,7 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("started hangtimeRoutine");
         hangtimePoints = 0;
-        while(currentPlane.GetComponent<AirplaneState>().planeState == PlaneState.Falling)
+        while(currentPlane != null && currentPlane.GetComponent<AirplaneState>().planeState == PlaneState.Falling)
         {
             float points = POINTS_PER_SECOND_HANGTIME * Time.deltaTime;
             hangtimePoints += points;

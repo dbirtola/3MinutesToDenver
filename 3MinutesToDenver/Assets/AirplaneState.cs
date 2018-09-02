@@ -24,6 +24,8 @@ public class AirplaneState : MonoBehaviour {
 
     public StateEvent stateChangedEvent;
 
+    public UnityEvent planeDestroyedEvent;
+
     public PlaneSize planeSize;
     public PlaneState planeState;
 
@@ -37,6 +39,7 @@ public class AirplaneState : MonoBehaviour {
     void Awake()
     {
         stateChangedEvent = new StateEvent();
+        planeDestroyedEvent = new UnityEvent();
     }
 
     void Update()
@@ -68,6 +71,19 @@ public class AirplaneState : MonoBehaviour {
                 DestroyPlane();
             }
         }
+
+        if (coll.gameObject.GetComponent<Obstacle>())
+        {
+            DestroyPlane();
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.transform.root.gameObject.GetComponent<Obstacle>())
+        {
+            DestroyPlane();
+        }
     }
 
     void OnCollisionExit(Collision coll)
@@ -86,8 +102,9 @@ public class AirplaneState : MonoBehaviour {
 
     public void DestroyPlane()
     {
-        Debug.Log("Blow up!");
+        planeDestroyedEvent.Invoke();
         Destroy(gameObject);
+
     }
 
     //If we are still falling after 0.5 seconds we consider ourselves in the air

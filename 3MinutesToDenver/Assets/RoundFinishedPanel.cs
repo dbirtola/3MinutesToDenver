@@ -14,7 +14,23 @@ public class RoundFinishedPanel : MonoBehaviour {
     {
         pointsEarnedText.text = "Points earned: " + results.pointsEarned;
         distanceTraveledText.text = "Distance traveled: " + results.distance;
-        upgradeCostText.text = "Upgrade Plane: $" + FindObjectOfType<GameManager>().GetUpgradeCost();
+        UpdateUpgradeButton();
+
         gameObject.SetActive(true);
+    }
+
+
+    public void UpdateUpgradeButton()
+    {
+        upgradeCostText.text = "Upgrade Plane: $" + FindObjectOfType<GameManager>().GetUpgradeCost();
+        var gm = FindObjectOfType<GameManager>();
+        if (gm.cash >= gm.GetUpgradeCost())
+        {
+            upgradeCostText.transform.parent.gameObject.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            upgradeCostText.transform.parent.gameObject.GetComponent<Button>().interactable = false;
+        }
     }
 }

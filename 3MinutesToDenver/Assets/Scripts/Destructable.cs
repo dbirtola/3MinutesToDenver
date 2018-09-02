@@ -23,6 +23,9 @@ public class Destructable : MonoBehaviour {
 
     public void Start()
     {
+        //RaycastHit raycast;
+        //Physics.Raycast(transform.position + Vector3.up * 100, -1 * Vector3.up, out raycast, 120);
+        //transform.position = raycast.point;
         GetComponent<Rigidbody>().Sleep();
     }
 
