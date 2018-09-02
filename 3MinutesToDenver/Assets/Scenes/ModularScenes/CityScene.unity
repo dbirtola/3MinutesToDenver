@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 3264306}
   - component: {fileID: 3264309}
   - component: {fileID: 3264308}
-  - component: {fileID: 3264307}
   m_Layer: 0
   m_Name: Street (12)
   m_TagString: Untagged
@@ -144,20 +143,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 38.225002, z: 0}
---- !u!64 &3264307
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 3264305}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3264308
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -612,7 +597,6 @@ GameObject:
   - component: {fileID: 31581180}
   - component: {fileID: 31581183}
   - component: {fileID: 31581182}
-  - component: {fileID: 31581181}
   m_Layer: 0
   m_Name: Street (19)
   m_TagString: Untagged
@@ -633,20 +617,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
---- !u!64 &31581181
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 31581179}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &31581182
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2330,7 +2300,6 @@ GameObject:
   - component: {fileID: 247530056}
   - component: {fileID: 247530059}
   - component: {fileID: 247530058}
-  - component: {fileID: 247530057}
   m_Layer: 0
   m_Name: Street (17)
   m_TagString: Untagged
@@ -2351,20 +2320,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
---- !u!64 &247530057
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247530055}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &247530058
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3690,7 +3645,6 @@ GameObject:
   - component: {fileID: 434219683}
   - component: {fileID: 434219686}
   - component: {fileID: 434219685}
-  - component: {fileID: 434219684}
   m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
@@ -3711,20 +3665,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &434219684
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 434219682}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &434219685
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5796,7 +5736,6 @@ GameObject:
   - component: {fileID: 642703334}
   - component: {fileID: 642703337}
   - component: {fileID: 642703336}
-  - component: {fileID: 642703335}
   m_Layer: 0
   m_Name: Street (1)
   m_TagString: Untagged
@@ -5817,20 +5756,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!64 &642703335
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 642703333}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &642703336
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6746,7 +6671,6 @@ GameObject:
   - component: {fileID: 738478740}
   - component: {fileID: 738478743}
   - component: {fileID: 738478742}
-  - component: {fileID: 738478741}
   m_Layer: 0
   m_Name: Street (18)
   m_TagString: Untagged
@@ -6767,20 +6691,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
---- !u!64 &738478741
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 738478739}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &738478742
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10174,7 +10084,6 @@ GameObject:
   - component: {fileID: 1115542177}
   - component: {fileID: 1115542180}
   - component: {fileID: 1115542179}
-  - component: {fileID: 1115542178}
   m_Layer: 0
   m_Name: Street (2)
   m_TagString: Untagged
@@ -10195,20 +10104,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1115542178
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1115542176}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1115542179
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10261,7 +10156,6 @@ GameObject:
   - component: {fileID: 1116436139}
   - component: {fileID: 1116436142}
   - component: {fileID: 1116436141}
-  - component: {fileID: 1116436140}
   m_Layer: 0
   m_Name: Street (13)
   m_TagString: Untagged
@@ -10282,20 +10176,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1116436140
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1116436138}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1116436141
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10549,7 +10429,6 @@ GameObject:
   - component: {fileID: 1133984729}
   - component: {fileID: 1133984732}
   - component: {fileID: 1133984731}
-  - component: {fileID: 1133984730}
   m_Layer: 0
   m_Name: Street (3)
   m_TagString: Untagged
@@ -10570,20 +10449,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1133984730
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1133984728}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1133984731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10825,7 +10690,6 @@ GameObject:
   - component: {fileID: 1147049821}
   - component: {fileID: 1147049824}
   - component: {fileID: 1147049823}
-  - component: {fileID: 1147049822}
   m_Layer: 0
   m_Name: Street (14)
   m_TagString: Untagged
@@ -10846,20 +10710,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
---- !u!64 &1147049822
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1147049820}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1147049823
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10912,7 +10762,6 @@ GameObject:
   - component: {fileID: 1156632836}
   - component: {fileID: 1156632839}
   - component: {fileID: 1156632838}
-  - component: {fileID: 1156632837}
   m_Layer: 0
   m_Name: Street (16)
   m_TagString: Untagged
@@ -10933,20 +10782,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1156632837
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1156632835}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1156632838
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11568,7 +11403,6 @@ GameObject:
   - component: {fileID: 1205803504}
   - component: {fileID: 1205803507}
   - component: {fileID: 1205803506}
-  - component: {fileID: 1205803505}
   m_Layer: 0
   m_Name: Street (4)
   m_TagString: Untagged
@@ -11589,20 +11423,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1205803505
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1205803503}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1205803506
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11770,7 +11590,6 @@ GameObject:
   - component: {fileID: 1220907609}
   - component: {fileID: 1220907612}
   - component: {fileID: 1220907611}
-  - component: {fileID: 1220907610}
   m_Layer: 0
   m_Name: Street (5)
   m_TagString: Untagged
@@ -11791,20 +11610,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1220907610
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1220907608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1220907611
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11924,7 +11729,6 @@ GameObject:
   - component: {fileID: 1241521246}
   - component: {fileID: 1241521249}
   - component: {fileID: 1241521248}
-  - component: {fileID: 1241521247}
   m_Layer: 0
   m_Name: Street (15)
   m_TagString: Untagged
@@ -11945,20 +11749,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -32.879, z: 0}
---- !u!64 &1241521247
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1241521245}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1241521248
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12011,7 +11801,6 @@ GameObject:
   - component: {fileID: 1251592607}
   - component: {fileID: 1251592610}
   - component: {fileID: 1251592609}
-  - component: {fileID: 1251592608}
   m_Layer: 0
   m_Name: Street (11)
   m_TagString: Untagged
@@ -12032,20 +11821,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
---- !u!64 &1251592608
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1251592606}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1251592609
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15142,7 +14917,6 @@ GameObject:
   - component: {fileID: 1517420854}
   - component: {fileID: 1517420857}
   - component: {fileID: 1517420856}
-  - component: {fileID: 1517420855}
   m_Layer: 0
   m_Name: Street (20)
   m_TagString: Untagged
@@ -15163,20 +14937,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1517420855
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1517420853}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1517420856
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16397,7 +16157,6 @@ GameObject:
   - component: {fileID: 1676301364}
   - component: {fileID: 1676301367}
   - component: {fileID: 1676301366}
-  - component: {fileID: 1676301365}
   m_Layer: 0
   m_Name: Street (9)
   m_TagString: Untagged
@@ -16418,20 +16177,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!64 &1676301365
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1676301363}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1676301366
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17422,7 +17167,6 @@ GameObject:
   - component: {fileID: 1769846315}
   - component: {fileID: 1769846318}
   - component: {fileID: 1769846317}
-  - component: {fileID: 1769846316}
   m_Layer: 0
   m_Name: Street (7)
   m_TagString: Untagged
@@ -17443,20 +17187,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1769846316
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1769846314}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1769846317
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17745,7 +17475,6 @@ GameObject:
   - component: {fileID: 1840011065}
   - component: {fileID: 1840011068}
   - component: {fileID: 1840011067}
-  - component: {fileID: 1840011066}
   m_Layer: 0
   m_Name: Street (8)
   m_TagString: Untagged
@@ -17766,20 +17495,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!64 &1840011066
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1840011064}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1840011067
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19643,7 +19358,6 @@ GameObject:
   - component: {fileID: 2042567313}
   - component: {fileID: 2042567316}
   - component: {fileID: 2042567315}
-  - component: {fileID: 2042567314}
   m_Layer: 0
   m_Name: Street (6)
   m_TagString: Untagged
@@ -19664,20 +19378,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &2042567314
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2042567312}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2042567315
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20049,7 +19749,6 @@ GameObject:
   - component: {fileID: 2060272615}
   - component: {fileID: 2060272618}
   - component: {fileID: 2060272617}
-  - component: {fileID: 2060272616}
   m_Layer: 0
   m_Name: Street (10)
   m_TagString: Untagged
@@ -20070,20 +19769,6 @@ Transform:
   m_Father: {fileID: 1674709950}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -119.37401, z: 0}
---- !u!64 &2060272616
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2060272614}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2060272617
 MeshRenderer:
   m_ObjectHideFlags: 0
