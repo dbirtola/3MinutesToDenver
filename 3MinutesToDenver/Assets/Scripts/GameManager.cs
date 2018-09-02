@@ -220,7 +220,17 @@ public class GameManager : MonoBehaviour {
 
         dialogueManager.QueueDialogue("Air Traffic Control", "Hello flight 247 this is Air Traffic Control", 2.5f);
         dialogueManager.QueueDialogue("Air Traffic Control", "We're going to have you ready for flight here in just a couple seconds", 2.5f);
-        dialogueManager.QueueDialogue("Air Traffic Control", "Honestly, this is my first day. So bare with me here", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "Honestly, this is my first day. So bear with me here.", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "plane controls are I J K L", 3.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "Wait!", .5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "WASD! Those are the controls, W A S D", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "Go ahead and start going down the runway.", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "Speed up!", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "By the way, have you ever seen a grown man naked?", 1.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "Once you get enough speed, you will be able to make it over that fence.", 2.5f);
+        dialogueManager.QueueDialogue("Air Traffic Control", "Please do NOT crash into the fence, I am tired of filling out the paperwork.", 2.5f);
+
+
 
 
     }
