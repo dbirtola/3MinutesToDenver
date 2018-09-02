@@ -16,6 +16,7 @@ public class LoadTrigger : MonoBehaviour {
         {
             SceneManager.LoadSceneAsync(sceneToBeLoaded, LoadSceneMode.Additive);
             hasBeenLoaded = true;
+           
         }
     }
 }
