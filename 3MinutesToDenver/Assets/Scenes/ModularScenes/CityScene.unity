@@ -4687,7 +4687,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4444851844796496, guid: 122d0ab717a82e648953f28a2fb7d949, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3336.9
+      value: 2960
       objectReference: {fileID: 0}
     - target: {fileID: 4444851844796496, guid: 122d0ab717a82e648953f28a2fb7d949, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4716,7 +4716,17 @@ Prefab:
     - target: {fileID: 114392709222711512, guid: 122d0ab717a82e648953f28a2fb7d949,
         type: 2}
       propertyPath: sceneToBeLoaded
-      value: FarmScene
+      value: Denver
+      objectReference: {fileID: 0}
+    - target: {fileID: 65772270976482016, guid: 122d0ab717a82e648953f28a2fb7d949,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 65772270976482016, guid: 122d0ab717a82e648953f28a2fb7d949,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122d0ab717a82e648953f28a2fb7d949, type: 2}
