@@ -50,6 +50,15 @@ public class PlayerController : MonoBehaviour {
             {
                 player.GetComponent<Airplane>().rotateBackward();
             }
+            else if ((Input.GetKey("up") || Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.E)))
+            {
+                player.GetComponent<Airplane>().rotateRightAndForward();
+            }
+            else if ((Input.GetKey("up") || Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.Q)))
+            {
+                player.GetComponent<Airplane>().rotateLeftAndForward();
+            }
+
 
 
             if ((Input.GetKey("up") || Input.GetKey(KeyCode.W)))
