@@ -7779,15 +7779,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minutesCamera: {fileID: 199453650}
   player: {fileID: 46953559}
-  airplanePrefab: {fileID: 114452963368126636, guid: 96eeb19bfbb54b04899c273b0615547f,
-    type: 2}
+  airplanePrefabs: []
   startPoint: {fileID: 1690564799}
   endPoint: {fileID: 1688354624}
+  currentPlaneSize: 0
   currentPlane: {fileID: 0}
   panicGainedRecently: 0
   roundInProgress: 0
   cash: 0
   hangtimePoints: 0
+  upgradeCosts: 
 --- !u!4 &320279656
 Transform:
   m_ObjectHideFlags: 0
@@ -43053,11 +43054,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4760168810603892, guid: 96eeb19bfbb54b04899c273b0615547f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 286
+      value: 11.8
       objectReference: {fileID: 0}
     - target: {fileID: 4760168810603892, guid: 96eeb19bfbb54b04899c273b0615547f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 130.3
+      value: 410
       objectReference: {fileID: 0}
     - target: {fileID: 4760168810603892, guid: 96eeb19bfbb54b04899c273b0615547f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -43111,6 +43112,10 @@ Prefab:
         type: 2}
       propertyPath: speed
       value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4760168810603892, guid: 96eeb19bfbb54b04899c273b0615547f, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96eeb19bfbb54b04899c273b0615547f, type: 2}
