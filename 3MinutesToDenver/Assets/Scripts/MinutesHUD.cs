@@ -46,6 +46,7 @@ public class MinutesHUD : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+
     public void RoundStart()
     {
         gameObject.SetActive(true);
@@ -95,6 +96,16 @@ public class MinutesHUD : MonoBehaviour {
         }else
         {
             comboText.gameObject.SetActive(false);
+        }
+
+
+        if (specialNotification.gameObject.activeSelf)
+        {
+            pointText.gameObject.SetActive(false);
+        }
+        else
+        {
+            pointText.gameObject.SetActive(true);
         }
     }
 

@@ -23,6 +23,7 @@ public class RoundEvent : UnityEvent<RoundResults>{
 }
 
 public class RoundResults{
+    public string causeOfDeath;
     public float distance;
     public int pointsEarned;
 }
@@ -216,7 +217,7 @@ public class GameManager : MonoBehaviour {
         startPoint = FindObjectOfType<StartPoint>();
         endPoint = FindObjectOfType<EndPoint>();
 
-        endPoint.playerEnteredZoneEvent.AddListener(ProcessResults);
+        endPoint.playerEnteredZoneEvent.AddListener(()=> { ProcessResults("Reached Denver!"); });
 
 
         //SceneManager.LoadScene(0);
@@ -293,7 +294,7 @@ public class GameManager : MonoBehaviour {
         AwardPoints((int)hangtimePoints);
     }
 
-    public void ProcessResults()
+    public void ProcessResults(string causeOfEnd)
     {
         //Turn players points into cash
 
@@ -304,6 +305,7 @@ public class GameManager : MonoBehaviour {
         RoundResults roundResults = new RoundResults();
         roundResults.pointsEarned = roundPoints;
         roundResults.distance = currentPlane.transform.position.z - startPoint.transform.position.z;
+        roundResults.causeOfDeath = causeOfEnd;
         playerFinishedRoundEvent.Invoke(roundResults);
 
     }

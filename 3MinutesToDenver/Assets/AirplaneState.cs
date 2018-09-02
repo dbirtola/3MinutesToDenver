@@ -15,7 +15,10 @@ public enum PlaneSize
     medium,
     large
 }
+public class StringEvent : UnityEvent<string>
+{
 
+}
 public class StateEvent : UnityEvent<PlaneState>{
 
 }
@@ -24,7 +27,7 @@ public class AirplaneState : MonoBehaviour {
 
     public StateEvent stateChangedEvent;
 
-    public UnityEvent planeDestroyedEvent;
+    public StringEvent planeDestroyedEvent;
 
     public PlaneSize planeSize;
     public PlaneState planeState;
@@ -39,7 +42,7 @@ public class AirplaneState : MonoBehaviour {
     void Awake()
     {
         stateChangedEvent = new StateEvent();
-        planeDestroyedEvent = new UnityEvent();
+        planeDestroyedEvent = new StringEvent();
     }
 
     void Update()
@@ -68,13 +71,13 @@ public class AirplaneState : MonoBehaviour {
         {
             if(coll.gameObject.GetComponent<Destructable>().requiredSizeToDestroy > planeSize)
             {
-                DestroyPlane();
+                DestroyPlane("Destructable was too big for your current plane!");
             }
         }
 
         if (coll.gameObject.GetComponent<Obstacle>())
         {
-            DestroyPlane();
+            DestroyPlane("Hit an obstacle!");
         }
     }
 
@@ -82,7 +85,7 @@ public class AirplaneState : MonoBehaviour {
     {
         if (col.gameObject.transform.root.gameObject.GetComponent<Obstacle>())
         {
-            DestroyPlane();
+            DestroyPlane("Hit water!");
         }
     }
 
@@ -100,9 +103,9 @@ public class AirplaneState : MonoBehaviour {
         
     }
 
-    public void DestroyPlane()
+    public void DestroyPlane(string cause)
     {
-        planeDestroyedEvent.Invoke();
+        planeDestroyedEvent.Invoke(cause);
         Destroy(gameObject);
 
     }
