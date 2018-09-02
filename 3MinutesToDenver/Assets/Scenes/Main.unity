@@ -13451,6 +13451,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114392709222711512, guid: 122d0ab717a82e648953f28a2fb7d949,
+        type: 2}
+      propertyPath: sceneToBeLoaded
+      value: Runway
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122d0ab717a82e648953f28a2fb7d949, type: 2}
   m_IsPrefabAsset: 0

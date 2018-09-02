@@ -20,7 +20,12 @@ public class Destructable : MonoBehaviour {
     {
         gameManager = FindObjectOfType<GameManager>();
     }
-	
+
+    public void Start()
+    {
+        GetComponent<Rigidbody>().Sleep();
+    }
+
     void OnCollisionEnter(Collision coll)
     {
         if (hasBeenHit)
