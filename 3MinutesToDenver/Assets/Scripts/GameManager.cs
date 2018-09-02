@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour {
     {
         // SceneManager.LoadScene(1);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(6);
 
         startPoint = FindObjectOfType<StartPoint>();
         endPoint = FindObjectOfType<EndPoint>();
@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator VeryStartRoutine()
     {
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(6);
         yield return null;
 
         startPoint = FindObjectOfType<StartPoint>();
@@ -233,6 +233,11 @@ public class GameManager : MonoBehaviour {
 
         currentPlane = Instantiate(airplanePrefabs[(int)currentPlaneSize], startPoint.transform.position, startPoint.transform.rotation);
         player.player = currentPlane.gameObject;
+        currentPlane.gameObject.layer = 9;
+        foreach(Transform t in currentPlane.transform)
+        {
+            t.gameObject.layer = 9;
+        }
 
         FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
 

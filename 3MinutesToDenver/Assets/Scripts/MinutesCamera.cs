@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class MinutesCamera : MonoBehaviour {
 
     public GameObject target;
@@ -11,6 +13,9 @@ public class MinutesCamera : MonoBehaviour {
     bool introPan = false;
 
     float panSpeed = 0.5f;
+
+    public Vector2[] planeCameraInfo;
+
 
     Quaternion defaultrotation;
 
@@ -44,14 +49,16 @@ public class MinutesCamera : MonoBehaviour {
 	void Update () {
         if(target != null && introPan == false)
         {
-            transform.position = target.transform.position + Vector3.up * distance - Vector3.forward * 25;
+            PlaneSize size = FindObjectOfType<GameManager>().currentPlaneSize;
+            transform.position = target.transform.position + Vector3.up * planeCameraInfo[(int)size].x - Vector3.forward * planeCameraInfo[(int)size].y;
            // transform.rotation = Quaternion.Euler(23, transform.rotation.y, transform.rotation.z);
         }
     }
 
     IEnumerator IntroPanRoutine()
     {
-        transform.position = target.transform.position + Vector3.up * distance - Vector3.forward * 25;
+        PlaneSize size = FindObjectOfType<GameManager>().currentPlaneSize;
+        transform.position = target.transform.position + Vector3.up * planeCameraInfo[(int)size].x - Vector3.forward * planeCameraInfo[(int)size].y;
 
         while (introPan == true)
         {
@@ -67,10 +74,12 @@ public class MinutesCamera : MonoBehaviour {
     {
         if (introPan == true)
         {
+            PlaneSize size = FindObjectOfType<GameManager>().currentPlaneSize;
             FindObjectOfType<PlayerController>().enabled = false;
-            Vector3 targetPos = target.transform.position + Vector3.up * distance - Vector3.forward * 25; ;
-            
-           
+            Vector3 targetPos = target.transform.position + Vector3.up * planeCameraInfo[(int)size].x - Vector3.forward * planeCameraInfo[(int)size].y;
+
+
+
             while (Vector3.Distance(transform.position, targetPos) > 1)
             {
                 transform.RotateAround(target.transform.position, target.transform.up, panSpeed * 12);

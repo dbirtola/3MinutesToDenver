@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f33d01e2ba275b429422aa637271319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 35000
+  speed: 75000
   rotationSpeed: 0.8
 --- !u!114 &114609351226004318
 MonoBehaviour:
@@ -270,5 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e83bdd539967cf4bb55ab71368233b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planeDestroyedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   planeSize: 0
   planeState: 0

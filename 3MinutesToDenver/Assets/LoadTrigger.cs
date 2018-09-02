@@ -8,11 +8,15 @@ public class LoadTrigger : MonoBehaviour {
 
     public string sceneToBeLoaded;
 
+    public bool hasBeenLoaded = false;
+
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.GetComponent<Airplane>())
+        if (hasBeenLoaded == false && col.gameObject.GetComponent<Airplane>())
         {
             SceneManager.LoadSceneAsync(sceneToBeLoaded, LoadSceneMode.Additive);
+            hasBeenLoaded = true;
+           
         }
     }
 }

@@ -8,9 +8,7 @@ public class PlayerController : MonoBehaviour {
     //player controller has input testing
     public GameObject player;
     // Use this for initialization
-    //private Vector3 EulerAngleVelocityLeftDirection = new Vector3(-100,0,0);
-   // private Vector3 EulerAngleVelocityRightDirection = new Vector3(100, 0, 0);
-
+    private float initialMass;
 
     void Awake()
     {
@@ -51,10 +49,8 @@ public class PlayerController : MonoBehaviour {
             else if ((Input.GetKey("up") || Input.GetKey(KeyCode.W) && (Input.GetKey("down") || Input.GetKey(KeyCode.S))))
             {
                 player.GetComponent<Airplane>().rotateBackward();
-
             }
-            else
-                player.GetComponent<Rigidbody>().drag = 0;
+
 
             if ((Input.GetKey("up") || Input.GetKey(KeyCode.W)))
             {
@@ -71,6 +67,14 @@ public class PlayerController : MonoBehaviour {
             else if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
             {
                 player.GetComponent<Airplane>().steerRight();
+            }
+            else if (Input.GetKey(KeyCode.Q))
+            {
+                player.GetComponent<Airplane>().rotateLeft();
+            }
+            else if (Input.GetKey(KeyCode.E))
+            {
+                player.GetComponent<Airplane>().rotateRight();
             }
 
         }
