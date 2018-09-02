@@ -29,9 +29,24 @@ public class AirplaneState : MonoBehaviour {
 
     Coroutine checkFallingRoutine;
 
+    float angleChange = 0;
+    float currentAngle = 0;
+    float lastAngle = 0;
+    Quaternion lastRotation;
+
     void Awake()
     {
         stateChangedEvent = new StateEvent();
+    }
+
+    void Update()
+    {
+        //float currentAngle = 
+        currentAngle = Mathf.DeltaAngle(transform.rotation.eulerAngles.x, 0);
+        angleChange += lastAngle - currentAngle;
+       // Debug.Log("Total rotation change:  " + angleChange + "Delta: " + currentAngle);
+
+        lastAngle = currentAngle;
     }
 
     void OnCollisionEnter(Collision coll)
