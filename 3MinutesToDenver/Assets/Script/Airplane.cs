@@ -32,7 +32,7 @@ public class Airplane : MonoBehaviour {
     {
         if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
         {
-            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRightDirection * Time.deltaTime * rotationSpeed);
+            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
             GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
         }
         else if(GetComponent<AirplaneState>().planeState == PlaneState.Falling) {
@@ -45,7 +45,7 @@ public class Airplane : MonoBehaviour {
 
         if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
         {
-            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
+            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRightDirection * Time.deltaTime * rotationSpeed);
             GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
         }
         else if (GetComponent<AirplaneState>().planeState == PlaneState.Falling)
@@ -57,22 +57,28 @@ public class Airplane : MonoBehaviour {
  
     public void rotateBackward()
     {
-       // if (GetComponent<AirplaneState>().planeState == PlaneState.Falling)
-       // {
+       if (GetComponent<AirplaneState>().planeState == PlaneState.Falling)
+       {
             Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRotateBackward * Time.deltaTime * rotationSpeed);
             GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
             GetComponent<Rigidbody>().AddForce(0,100,0);
 
-       // }
+        }
 
     }
 
     public void moveForward() {
         if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
-        GetComponent<Rigidbody>().AddForce(transform.forward.x * GetComponent<Airplane>().speed, transform.forward.y * GetComponent<Airplane>().speed, transform.forward.z * GetComponent<Airplane>().speed);
+        {
+            Vector3 forward = transform.forward;
+            // Zero out the y component of your forward vector to only get the direction in the X,Z plane
+            forward.y = 0;
+            float headingAngle = Quaternion.LookRotation(forward).eulerAngles.y;
 
-        // GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().speed);
-        
+            GetComponent<Rigidbody>().AddForce(transform.forward.x * GetComponent<Airplane>().speed, transform.forward.y * GetComponent<Airplane>().speed, transform.forward.z * GetComponent<Airplane>().speed);
+        }
+
+
         else
         {
             GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().speed);
