@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338996879012154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 272.52832, y: 7.29, z: 121.60829}
+  m_LocalPosition: {x: 164, y: 7.29, z: 218.3}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4184167937283872}
@@ -150,7 +150,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: fa3d76a021fa4a04eb9205d69b6fdcfe, type: 3}
+  - {fileID: 2100000, guid: 6811020d6edcb784983d29de43d3311a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,7 +215,7 @@ Rigidbody:
   m_GameObject: {fileID: 1338996879012154}
   serializedVersion: 2
   m_Mass: 1000
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -257,9 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f33d01e2ba275b429422aa637271319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20000
-  tempDrag: 0.3
-  rotationSpeed: 0.5
+  speed: 35000
+  rotationSpeed: 0.8
 --- !u!114 &114609351226004318
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour {
             player.GetComponent<Airplane>().rotateBackward();
 
         }
-        else
-            player.GetComponent<Rigidbody>().drag = 0;
+       /// else
+           // player.GetComponent<Rigidbody>().drag = 0;
 
         if ( (Input.GetKey("up") || Input.GetKey(KeyCode.W)))
         {
