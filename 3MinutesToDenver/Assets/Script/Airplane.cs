@@ -7,7 +7,7 @@ public class Airplane : MonoBehaviour {
 
     public float speed = 15;
     // public float reverseSpeed = 12;
-    public float tempDrag = 3;
+   // public float tempDrag = 3;
    // public float turnSpeed = 5;
     public float rotationSpeed = .5f;
     //public float acceleration;
@@ -32,7 +32,7 @@ public class Airplane : MonoBehaviour {
     {
         if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
         {
-            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRightDirection * Time.deltaTime * rotationSpeed);
+            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
             GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
         }
         else if(GetComponent<AirplaneState>().planeState == PlaneState.Falling) {
@@ -45,7 +45,7 @@ public class Airplane : MonoBehaviour {
 
         if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
         {
-            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
+            Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRightDirection * Time.deltaTime * rotationSpeed);
             GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
         }
         else if (GetComponent<AirplaneState>().planeState == PlaneState.Falling)
@@ -57,22 +57,32 @@ public class Airplane : MonoBehaviour {
  
     public void rotateBackward()
     {
-       // if (GetComponent<AirplaneState>().planeState == PlaneState.Falling)
-       // {
+       if (GetComponent<AirplaneState>().planeState == PlaneState.Falling)
+       {
             Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRotateBackward * Time.deltaTime * rotationSpeed);
             GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
             GetComponent<Rigidbody>().AddForce(0,100,0);
 
-       // }
+        }
 
     }
 
     public void moveForward() {
         if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
-        GetComponent<Rigidbody>().AddForce(transform.forward.x * GetComponent<Airplane>().speed, transform.forward.y * GetComponent<Airplane>().speed, transform.forward.z * GetComponent<Airplane>().speed);
+        {
+            //  GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized;
+            // GetComponent<Rigidbody>().velocity.Set(GetComponent<Rigidbody>().velocity.x * GetComponent<Airplane>().speed, GetComponent<Rigidbody>().velocity.y * GetComponent<Airplane>().speed, GetComponent<Rigidbody>().velocity.z * GetComponent<Airplane>().speed);
+           // if(transform.forward.x > transform.forward.z)
+                GetComponent<Rigidbody>().AddForce(transform.forward.x * GetComponent<Airplane>().speed, transform.forward.y * GetComponent<Airplane>().speed, transform.forward.z * GetComponent<Airplane>().speed);
+               // if(GetComponent<Airplane>().speed > )
+           // else
+               // GetComponent<Rigidbody>().AddForce(transform.forward.x * GetComponent<Airplane>().speed, transform.forward.y * GetComponent<Airplane>().speed, transform.forward.z * GetComponent<Airplane>().speed);
 
-        // GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().speed);
-        
+
+
+        }
+
+
         else
         {
             GetComponent<Rigidbody>().AddForce(transform.forward * GetComponent<Airplane>().speed);
@@ -83,18 +93,22 @@ public class Airplane : MonoBehaviour {
     }
     public void moveForwardAndSteerRight()
     {
+
         Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityRightDirection * Time.deltaTime * rotationSpeed);
         GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
-        if(GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
-        GetComponent<Rigidbody>().drag = tempDrag;
+        GetComponent<Rigidbody>().AddForce(deltaRotation*transform.right * GetComponent<Airplane>().speed);
+       // if(GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
+       //  GetComponent<Rigidbody>().drag = tempDrag;
 
     }
     public void moveForwardAndSteerLeft()
     {
         Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocityLeftDirection * Time.deltaTime * rotationSpeed);
         GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * deltaRotation);
-        if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
-            GetComponent<Rigidbody>().drag = tempDrag;
+        GetComponent<Rigidbody>().AddForce(deltaRotation * transform.right*-1 * GetComponent<Airplane>().speed);
+
+        // if (GetComponent<AirplaneState>().planeState == PlaneState.Grounded)
+        //  GetComponent<Rigidbody>().drag = tempDrag;
 
 
     }
