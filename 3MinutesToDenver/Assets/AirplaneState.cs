@@ -112,19 +112,17 @@ public class AirplaneState : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
         RaycastHit hitInfo = new RaycastHit();
+       
         Debug.Log("Casting ray!");
-        Physics.Raycast(transform.position + new Vector3(0, 10, 0), Vector3.up * -1,  out hitInfo, 12f);
+        Physics.Raycast(transform.position + new Vector3(0, 10, 0), Vector3.up * -1,  out hitInfo, 12f, 9);
         Debug.DrawRay(transform.position + new Vector3(0, 10, 0), Vector3.up * -12, Color.white, 3);
 
-        if (hitInfo.collider == null) {
+        if (hitInfo.collider == null) {// hitInfo.collider.gameObject.transform.root.gameObject != gameObject) {
 
             EnterState(PlaneState.Falling);
         }else
         {
-            if (!hitInfo.collider.GetComponent<Terrain>())
-            {
-                EnterState(PlaneState.Falling);
-            }
+            Debug.Log(hitInfo.collider.gameObject.name);
         }
     }
 

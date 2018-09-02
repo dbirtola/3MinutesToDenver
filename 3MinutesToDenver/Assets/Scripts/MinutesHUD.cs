@@ -74,7 +74,7 @@ public class MinutesHUD : MonoBehaviour {
 
     public void UpdateCash(int newCash)
     {
-        cashText.text = "Cash MoFuckin Money: $$" + gameManager.cash;
+        cashText.text = "$" + gameManager.cash;
     }
 
     public void ShowPoints(int points)
@@ -87,7 +87,15 @@ public class MinutesHUD : MonoBehaviour {
     {
         pointText.text = gameManager.roundPoints.ToString();
         panicSlider.value = (float)gameManager.panicGainedRecently / GameManager.MAX_EXPECTED_RECENT_POINTS;
-        comboText.text = gameManager.comboMultiplier + "x";
+        if(gameManager.comboMultiplier > 1)
+        {
+            comboText.gameObject.SetActive(true);
+
+            comboText.text = gameManager.comboMultiplier + "x";
+        }else
+        {
+            comboText.gameObject.SetActive(false);
+        }
     }
 
     public void HidePanicSlider()

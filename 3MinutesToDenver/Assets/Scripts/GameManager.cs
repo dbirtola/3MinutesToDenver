@@ -233,6 +233,11 @@ public class GameManager : MonoBehaviour {
 
         currentPlane = Instantiate(airplanePrefabs[(int)currentPlaneSize], startPoint.transform.position, startPoint.transform.rotation);
         player.player = currentPlane.gameObject;
+        currentPlane.gameObject.layer = 9;
+        foreach(Transform t in currentPlane.transform)
+        {
+            t.gameObject.layer = 9;
+        }
 
         FindObjectOfType<MinutesCamera>().target = currentPlane.gameObject;
 
